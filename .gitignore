@@ -1,0 +1,82 @@
+# What does not belong in the repository.
+#
+# Two things here differ from the usual Python .gitignore, and both matter:
+#
+#   * The .spec files are SOURCE. The standard template ignores *.spec because
+#     PyInstaller usually generates them; ours are hand-written, name what goes
+#     into each build and what is left out, and "Build EXE.bat" will not run
+#     without them. They are listed as kept at the bottom of this file.
+#   * EasyMiniMax.zip is ~150 MB. GitHub refuses any file over 100 MB, so
+#     leaving it out is what lets a push succeed at all.
+
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# --- Build output -----------------------------------------------------------
+# PyInstaller's working folder and the finished programs, rebuilt from source
+# at any time by "Build EXE.bat".
+build/
+dist/
+*.exe
+
+# A stray copy of a build - the two exes end up in this subfolder rather than
+# dist/ when the installer is run from inside the source tree during testing.
+/EasyMiniMax/
+
+# --- Releases ---------------------------------------------------------------
+# Packaged and zipped for handing to someone; regenerated for every version.
+*.zip
+*.7z
+
+# --- The user's own things ---------------------------------------------------
+# settings.json holds absolute paths to this machine's ComfyUI, the remembered
+# seed and the chosen models. Committing it would point everyone else's copy
+# at folders that do not exist for them.
+settings.json
+settings.json.tmp
+
+# Everything EasyMiniMax makes: videos, the settings JSON saved beside each
+# one, and the last-frame stills. Large, personal, and none of it is source.
+output/
+
+# --- Downloads and staging ---------------------------------------------------
+# A part-finished download from the Ollama installer.
+*.part
+
+# --- Windows ------------------------------------------------------------------
+# Shortcuts embed the absolute path of the machine that made them, so they are
+# useless to anyone else. The .bat launchers beside them are the portable
+# version and ARE committed.
+*.lnk
+Thumbs.db
+desktop.ini
+
+# --- Credentials --------------------------------------------------------------
+.env
+*.key
+*.pem
+secrets.json
+
+# --- Scratch --------------------------------------------------------------------
+*.log
+*.tmp
+*.bak
+*.spec.bak
+
+# --- Claude Code project files -------------------------------------------------
+# Local tooling config (agents, commands, settings) - not part of the app.
+.claude/
+
+# --- Kept on purpose ------------------------------------------------------------
+# Listed explicitly so a later edit, or a generic template pasted over this
+# file, cannot quietly drop them.
+!EasyMiniMax.spec
+!EasyMiniMax Setup.spec
+!build_common.py
+!workflows/**/*.json
+!lang/*.json

@@ -1,0 +1,347 @@
+{
+  "1": {
+    "inputs": {
+      "unet_name": "minimax h3\\minimax_h3_fl2va_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "2": {
+    "inputs": {
+      "clip_name": "minimax h3\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "Load Text Encoder Qwen3vl_32b"
+    }
+  },
+  "3": {
+    "inputs": {
+      "vae_name": "minimax h3\\minimax_h3_video_vae_fp16.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE (video)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "vae_name": "minimax h3\\minimax_h3_audio_vae_fp32.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE (audio)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "start_second": 0,
+      "end_second": 5,
+      "duration_seconds": 5,
+      "start_frame": 0,
+      "end_frame": 120,
+      "duration_frames": 120,
+      "timeline_data": "{\"mainTrackEnabled\": true, \"audioTrackEnabled\": true, \"motionTrackEnabled\": true, \"propHeight\": 90, \"globalPropHeight\": 126, \"showFilenames\": true, \"showPromptZones\": true, \"global_prompt\": \"\", \"segments\": [{\"id\": \"seg0\", \"start\": 0, \"length\": 124, \"prompt\": \"\", \"type\": \"text\", \"isEndFrame\": false}], \"subjects\": [{\"images\": [], \"description\": \"\", \"shortName\": \"\", \"kind\": \"person\", \"retention\": \"fully_preserved\", \"retentionNote\": \"\"}, {\"images\": [], \"description\": \"\", \"shortName\": \"\", \"kind\": \"person\", \"retention\": \"fully_preserved\", \"retentionNote\": \"\"}, {\"images\": [], \"description\": \"\", \"shortName\": \"\", \"kind\": \"person\", \"retention\": \"fully_preserved\", \"retentionNote\": \"\"}], \"subjectSlotCount\": 3, \"reference_mode\": \"OFF\", \"prompt_format\": \"minimax\", \"motionSegments\": [], \"audioSegments\": [], \"overrideAudio\": false, \"inpaint_audio\": true, \"overall_soundscape\": \"\", \"non_diegetic_music\": \"\", \"prompt_override\": \"\", \"prompt_override_on\": false, \"task_type_override\": \"\", \"summary\": \"\", \"retakeMode\": false, \"retake_global_prompt\": \"\", \"retakeStart\": 0, \"retakeLength\": 0, \"retakePrompt\": \"\", \"retakeStrength\": 1, \"retakeVideo\": null, \"normalStartFrame\": 0, \"normalDurationFrames\": 124, \"analyzeProvider\": \"ollama\", \"analyzeBaseUrl\": \"\", \"analyzeModel\": \"\"}",
+      "local_prompts": "",
+      "segment_lengths": "",
+      "guide_strength": "",
+      "use_custom_audio": true,
+      "use_custom_motion": true,
+      "inpaint_audio": true,
+      "frame_rate": 24,
+      "display_mode": "seconds",
+      "custom_width": 1344,
+      "custom_height": 768,
+      "resize_method": "crop",
+      "divisible_by": 32,
+      "img_compression": 0,
+      "override_audio": false,
+      "ref_image_size": "match",
+      "shift_video": 12,
+      "shift_audio": 3,
+      "ref_image_notes": "",
+      "minimax_settings_ui": "",
+      "timeline_ui": "",
+      "minimax_prompt_preview": "",
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "model": [
+        "1",
+        0
+      ],
+      "model_ref2va": [
+        "16",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3DirectorCS",
+    "_meta": {
+      "title": "MiniMax H3 Director"
+    }
+  },
+  "14": {
+    "inputs": {
+      "filename_prefix": "video/MiniMax_H3_Director",
+      "format": "auto",
+      "codec": "auto",
+      "video-preview": "",
+      "video": [
+        "381:13",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "💾 FINAL SAVE"
+    }
+  },
+  "15": {
+    "inputs": {
+      "decode": "latent2rgb (fast)",
+      "preview_target": "node",
+      "max_resolution": 512,
+      "preview_frames": 24,
+      "preview_fps": [
+        "5",
+        4
+      ],
+      "webp_quality": 80,
+      "every_n_steps": 1,
+      "max_preview_overhead": 25,
+      "suppress_default_preview": true,
+      "playback": "true speed",
+      "minimax_preview_ui": "",
+      "model": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3PreviewOverrideCS",
+    "_meta": {
+      "title": "🎯 Preview Override (live)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "unet_name": "minimax h3\\minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model (ref2v)"
+    }
+  },
+  "380:6": {
+    "inputs": {
+      "noise_seed": 931948353665962
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "380:7": {
+    "inputs": {
+      "sampler_name": "res_multistep"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "380:9": {
+    "inputs": {
+      "model": [
+        "380:387",
+        0
+      ],
+      "conditioning": [
+        "5",
+        1
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "Basic Guider"
+    }
+  },
+  "380:10": {
+    "inputs": {
+      "noise": [
+        "380:6",
+        0
+      ],
+      "guider": [
+        "380:9",
+        0
+      ],
+      "sampler": [
+        "380:7",
+        0
+      ],
+      "sigmas": [
+        "380:8",
+        0
+      ],
+      "latent_image": [
+        "5",
+        2
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "380:8": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 10,
+      "denoise": 1,
+      "model": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "380:388": {
+    "inputs": {
+      "lora_name": "minimax h3\\minimax_h3_turbo_4step_ema_ckpt500_pruned_comfyui.safetensors",
+      "strength_model": 1,
+      "model": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "380:386": {
+    "inputs": {
+      "enabled": true,
+      "blend_weight": 0.5,
+      "degree": 1,
+      "ridge_lambda": 0.1,
+      "window_size": 2,
+      "flex_window": 0.75,
+      "warmup_steps": 1,
+      "tail_actual_steps": 1,
+      "max_history": 8,
+      "debug": false,
+      "history_storage": "system_ram",
+      "bootstrap_first_forecast": true,
+      "anchor_residual_feedback": false,
+      "selective_rollback_correction": false,
+      "offline_smoothing_replay": true,
+      "audio_blend_weight": 0,
+      "offline_archive_storage": "system_ram",
+      "model_aware_mode": "off",
+      "model_aware_risk_threshold": 0.65,
+      "model_aware_trust_shrinkage": false,
+      "model_aware_replay_generic_correction": false,
+      "generic_correction_mode": "coordinate_rls",
+      "generic_correction_limiter": "hard_clip",
+      "generic_correction_limit": 0.4,
+      "generic_correction_attenuation": "no_attenuation",
+      "model": [
+        "380:388",
+        0
+      ]
+    },
+    "class_type": "SpectrumApplyMiniMaxH3",
+    "_meta": {
+      "title": "Spectrum Apply MiniMax H3"
+    }
+  },
+  "380:387": {
+    "inputs": {
+      "attention": "comfy kitchen attention",
+      "model": [
+        "380:386",
+        0
+      ]
+    },
+    "class_type": "ModelAttentionBackend",
+    "_meta": {
+      "title": "ModelAttentionBackend"
+    }
+  },
+  "381:13": {
+    "inputs": {
+      "fps": [
+        "5",
+        4
+      ],
+      "bit_depth": 8,
+      "images": [
+        "381:11",
+        0
+      ],
+      "audio": [
+        "381:12",
+        0
+      ]
+    },
+    "class_type": "CreateVideo",
+    "_meta": {
+      "title": "Create Video"
+    }
+  },
+  "381:12": {
+    "inputs": {
+      "samples": [
+        "380:10",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "VAEDecodeAudio",
+    "_meta": {
+      "title": "VAE Decode Audio"
+    }
+  },
+  "381:11": {
+    "inputs": {
+      "samples": [
+        "380:10",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  }
+}
