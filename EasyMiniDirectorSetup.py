@@ -1,8 +1,8 @@
-"""EasyMiniMax Setup - installs EasyMiniMax into an existing EasyAI folder.
+"""EasyMiniDirector Setup - installs EasyMiniDirector into an existing EasyAI folder.
 
-Start it with:   python EasyMiniMaxSetup.py
+Start it with:   python EasyMiniDirectorSetup.py
 
-A separate program from EasyMiniMax itself. It writes into the EasyAI folder you
+A separate program from EasyMiniDirector itself. It writes into the EasyAI folder you
 choose and nowhere else, and it never modifies EasyAI's own settings - it only
 reads them, to find out where ComfyUI is.
 """
@@ -14,9 +14,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from EasyMiniMax import _make_console_utf8_safe   # noqa: E402  (shared helper)
+from EasyMiniDirector import _make_console_utf8_safe   # noqa: E402  (shared helper)
 
-TITLE = "EasyMiniMax Setup"
+TITLE = "EasyMiniDirector Setup"
 
 
 def _report(problem: str) -> None:

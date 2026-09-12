@@ -38,13 +38,13 @@ NEEDED_BYTES = 9 * 1024 ** 3
 #:
 #: EasyAI's own program file, and nothing else. settings.json was tried first
 #: and is worse than useless: *this* program has one of those too, so the guess
-#: happily proposed EasyMiniMax's own folder as the place to install into.
+#: happily proposed EasyMiniDirector's own folder as the place to install into.
 #: A fresh unzip always has the exe; a source checkout has EasyAI.py.
 EASYAI_MARKERS = ("EasyAI.exe", "EasyAI.py")
 
 #: The files that make up the program, taken out of the installer's own bundle.
-APP_EXE = "EasyMiniMax.exe"
-SETUP_EXE = "EasyMiniMax Setup.exe"
+APP_EXE = "EasyMiniDirector.exe"
+SETUP_EXE = "EasyMiniDirector Setup.exe"
 WORKFLOW = "minimax_h3_director.api.json"
 
 
@@ -402,7 +402,7 @@ class Installer:
 
     # -- 8. our settings ---------------------------------------------------
     def write_settings(self) -> None:
-        """Seed EasyMiniMax's own settings.json.
+        """Seed EasyMiniDirector's own settings.json.
 
         Merged into whatever is already there rather than replacing it: running
         the installer a second time must not throw away someone's choices.
@@ -456,6 +456,6 @@ def summarise(report: Report, choices: Choices) -> str:
                        "the missing pieces itself."))
     else:
         lines.append("")
-        lines.append(t("Done. EasyMiniMax.exe is in {folder}.",
+        lines.append(t("Done. EasyMiniDirector.exe is in {folder}.",
                        folder=choices.easyai_dir))
     return "\n".join(lines)

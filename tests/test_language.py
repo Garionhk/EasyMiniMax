@@ -168,7 +168,7 @@ def test_an_unknown_language_falls_back_to_english():
 # -- what should not be translated ----------------------------------------
 
 @pytest.mark.parametrize("term", [
-    "ComfyUI", "Ollama", "EasyAI", "EasyMiniMax", "LoRA", "Turbo",
+    "ComfyUI", "Ollama", "EasyAI", "EasyMiniDirector", "LoRA", "Turbo",
 ])
 def test_names_are_left_alone(term):
     """Product and file names have to survive: they appear in paths, commands

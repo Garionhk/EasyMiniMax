@@ -24,7 +24,7 @@ from app.ui.scroll import fit_to_screen, vertical_scroll
 from setup import steps
 from setup.download import Progress, format_eta
 
-TITLE = "EasyMiniMax Setup"
+TITLE = "EasyMiniDirector Setup"
 
 
 class _Worker(QThread):
@@ -63,8 +63,10 @@ class SetupWindow(QMainWindow):
     #: guessed. Anything smaller scrolls, which is the point.
     #: 720, not 700: the language chooser in the header added 15 pixels, and a
     #: WANTED that is short of its own page means the window opens with a
-    #: scrollbar it did not need. Measured, not guessed - there is a test.
-    WANTED = (780, 720)
+    #: scrollbar it did not need. 730, not 720: renaming EasyMiniMax to
+    #: EasyMiniDirector lengthened the blurb enough to wrap onto an extra
+    #: line. Measured, not guessed - there is a test.
+    WANTED = (780, 730)
     SMALLEST = (560, 320)
 
     def __init__(self):
@@ -100,7 +102,7 @@ class SetupWindow(QMainWindow):
         column.setSpacing(14)
 
         header = QHBoxLayout()
-        title = QLabel(t("Install EasyMiniMax"))
+        title = QLabel(t("Install EasyMiniDirector"))
         title.setObjectName("Title")
         header.addWidget(title, 1)
 
@@ -118,9 +120,9 @@ class SetupWindow(QMainWindow):
         column.addLayout(header)
 
         blurb = QLabel(t(
-            "EasyMiniMax goes into your EasyAI folder, so both programs sit "
+            "EasyMiniDirector goes into your EasyAI folder, so both programs sit "
             "together and share the same ComfyUI. Its own settings, workflows "
-            "and videos are kept separately, in an EasyMiniMax folder inside "
+            "and videos are kept separately, in an EasyMiniDirector folder inside "
             "it — EasyAI's are never touched."))
         blurb.setObjectName("Hint")
         blurb.setWordWrap(True)
@@ -356,7 +358,7 @@ class SetupWindow(QMainWindow):
 
         if report.ok:
             QMessageBox.information(self, TITLE, t(
-                "EasyMiniMax is installed.\n\nYou will find EasyMiniMax.exe in "
+                "EasyMiniDirector is installed.\n\nYou will find EasyMiniDirector.exe in "
                 "{folder}, beside EasyAI.exe.", folder=choices.easyai_dir))
         else:
             QMessageBox.warning(self, TITLE, "\n".join(

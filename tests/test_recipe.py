@@ -113,7 +113,7 @@ def test_a_missing_reference_picture_is_reported_not_swallowed(tmp_path, board):
 def test_a_size_this_version_no_longer_offers_falls_back_and_says_so(tmp_path):
     path = tmp_path / "clip.json"
     path.write_text(json.dumps({
-        "app": "EasyMiniMax", "format": 1, "prompt": "a fox",
+        "app": "EasyMiniDirector", "format": 1, "prompt": "a fox",
         "size": {"width": 768, "height": 768, "preset": "768x768"},
         "length": {"frames": 56},
     }), encoding="utf-8")
@@ -126,7 +126,7 @@ def test_a_size_this_version_no_longer_offers_falls_back_and_says_so(tmp_path):
 def test_a_newer_file_loads_what_it_can(tmp_path):
     path = tmp_path / "clip.json"
     path.write_text(json.dumps({
-        "app": "EasyMiniMax", "format": 99, "prompt": "a fox",
+        "app": "EasyMiniDirector", "format": 99, "prompt": "a fox",
         "something_from_the_future": {"nonsense": True},
     }), encoding="utf-8")
 
@@ -154,7 +154,7 @@ def test_a_file_from_another_program_says_so(tmp_path):
 def test_an_unknown_speed_falls_back_to_turbo(tmp_path):
     path = tmp_path / "clip.json"
     path.write_text(json.dumps({
-        "app": "EasyMiniMax", "format": 1, "prompt": "a fox",
+        "app": "EasyMiniDirector", "format": 1, "prompt": "a fox",
         "speed": {"profile": "ludicrous"},
     }), encoding="utf-8")
     out = recipe.load(path)
@@ -166,7 +166,7 @@ def test_loaded_shots_still_tile_the_clip(tmp_path):
     """A hand-edited file must not produce shots that do not add up."""
     path = tmp_path / "clip.json"
     path.write_text(json.dumps({
-        "app": "EasyMiniMax", "format": 1, "prompt": "a fox",
+        "app": "EasyMiniDirector", "format": 1, "prompt": "a fox",
         "length": {"frames": 124},
         "shots": [{"prompt": "a", "frames": 5}, {"prompt": "b", "frames": 5}],
     }), encoding="utf-8")
@@ -213,7 +213,7 @@ def test_a_file_with_no_voice_block_loads_fine(tmp_path):
     """Every recipe written before voices existed."""
     path = tmp_path / "old.json"
     path.write_text(json.dumps({
-        "app": "EasyMiniMax", "format": 1, "prompt": "a fox",
+        "app": "EasyMiniDirector", "format": 1, "prompt": "a fox",
         "length": {"frames": 56},
     }), encoding="utf-8")
     out = recipe.load(path)

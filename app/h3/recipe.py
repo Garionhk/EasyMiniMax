@@ -56,7 +56,7 @@ def build(storyboard: Storyboard, profile: Profile, *, seed: int | None = None,
           video: str = "", last_frame: str = "") -> dict:
     """Everything worth recording about one render."""
     return {
-        "app": "EasyMiniMax",
+        "app": "EasyMiniDirector",
         "app_version": __version__,
         "format": FORMAT_VERSION,
         "made": _dt.datetime.now().isoformat(timespec="seconds"),
@@ -152,7 +152,7 @@ def load(path: Path | str) -> Loaded:
     if not isinstance(data, dict):
         out.notes.append(f"{path.name} is not a settings file.")
         return out
-    if data.get("app") and data.get("app") != "EasyMiniMax":
+    if data.get("app") and data.get("app") != "EasyMiniDirector":
         out.notes.append(
             f"{path.name} was written by {data.get('app')}, not this program. "
             "Whatever could be read has been loaded.")

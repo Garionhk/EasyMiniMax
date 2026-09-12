@@ -1,9 +1,9 @@
-"""Build the EasyMiniMax icon pack from one master PNG.
+"""Build the EasyMiniDirector icon pack from one master PNG.
 
     python tools/make_icons.py
 
-Reads EasyMiniMax.png and writes assets/icons/ - a multi-resolution .ico for
-Windows, plus PNGs for anything that wants one.
+Reads EasyMiniDirectorIcon.png and writes assets/icons/ - a multi-resolution
+.ico for Windows, plus PNGs for anything that wants one.
 
 Two things this does that a plain resize does not:
 
@@ -22,7 +22,7 @@ from pathlib import Path
 from PIL import Image, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
-MASTER = ROOT / "EasyMiniMax.png"
+MASTER = ROOT / "EasyMiniDirectorIcon.png"
 OUT = ROOT / "assets" / "icons"
 
 #: Everything Windows asks for. 16/20/24/32 are the taskbar and title bar,
@@ -68,7 +68,7 @@ def main() -> int:
 
     frames = [resized(master, size) for size in ICO_SIZES]
 
-    ico = OUT / "EasyMiniMax.ico"
+    ico = OUT / "EasyMiniDirector.ico"
     frames[-1].save(ico, format="ICO",
                     sizes=[(s, s) for s in ICO_SIZES],
                     append_images=frames[:-1])
@@ -77,11 +77,11 @@ def main() -> int:
 
     for size, frame in zip(ICO_SIZES, frames):
         if size in (16, 32, 48, 256):
-            path = OUT / f"EasyMiniMax-{size}.png"
+            path = OUT / f"EasyMiniDirector-{size}.png"
             frame.save(path)
             print(f"  {path.relative_to(ROOT)}")
 
-    full = OUT / "EasyMiniMax-1024.png"
+    full = OUT / "EasyMiniDirector-1024.png"
     master.save(full)
     print(f"  {full.relative_to(ROOT)}")
     return 0

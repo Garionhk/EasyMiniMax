@@ -1,13 +1,13 @@
 @echo off
 REM ===================================================================
-REM  EasyMiniMax Setup launcher
-REM  Double-click this file to install EasyMiniMax.
+REM  EasyMiniDirector Setup launcher
+REM  Double-click this file to install EasyMiniDirector.
 REM  It finds Python, installs anything missing the first time, then
 REM  opens the app without leaving a black console window behind.
 REM ===================================================================
 setlocal EnableExtensions
 cd /d "%~dp0"
-title EasyMiniMax Setup
+title EasyMiniDirector Setup
 
 REM --- find a Python we can use --------------------------------------
 REM "py" is the launcher that ships with python.org installs; "python"
@@ -27,16 +27,16 @@ REM --- check the version ---------------------------------------------
 %PY% -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" >nul 2>nul
 if errorlevel 1 goto :old_python
 
-REM --- check the libraries EasyMiniMax needs -------------------------------
+REM --- check the libraries EasyMiniDirector needs -------------------------------
 %PY% -c "import PySide6, requests, websocket, PIL" >nul 2>nul
 if errorlevel 1 goto :install
 
 :run
-echo Starting EasyMiniMax Setup...
+echo Starting EasyMiniDirector Setup...
 REM Launched with the windowless Python so no black box is left behind.
-REM If startup fails, EasyMiniMaxSetup.py puts the error in a message box, because
+REM If startup fails, EasyMiniDirectorSetup.py puts the error in a message box, because
 REM nothing printed here would ever be seen.
-start "EasyMiniMax Setup" %PYW% "%~dp0EasyMiniMaxSetup.py"
+start "EasyMiniDirector Setup" %PYW% "%~dp0EasyMiniDirectorSetup.py"
 exit /b 0
 
 REM -------------------------------------------------------------------
@@ -46,7 +46,7 @@ echo ===================================================================
 echo   First time setup
 echo ===================================================================
 echo.
-echo EasyMiniMax needs a few Python libraries. This happens once and takes
+echo EasyMiniDirector needs a few Python libraries. This happens once and takes
 echo a couple of minutes. Leave this window open.
 echo.
 pause
@@ -61,7 +61,7 @@ goto :run
 REM -------------------------------------------------------------------
 :install_failed
 echo.
-echo Could not install the libraries EasyMiniMax needs.
+echo Could not install the libraries EasyMiniDirector needs.
 echo.
 echo Try opening a Command Prompt in this folder and running:
 echo     %PY% -m pip install -r requirements.txt
@@ -78,12 +78,12 @@ echo ===================================================================
 echo   Python is not installed
 echo ===================================================================
 echo.
-echo EasyMiniMax needs Python 3.10 or newer.
+echo EasyMiniDirector needs Python 3.10 or newer.
 echo.
 echo 1. Go to  https://www.python.org/downloads/
 echo 2. Download and run the installer.
 echo 3. IMPORTANT: tick "Add python.exe to PATH" on the first screen.
-echo 4. When it finishes, double-click EasyMiniMax.bat again.
+echo 4. When it finishes, double-click EasyMiniDirector.bat again.
 echo.
 pause
 exit /b 1
@@ -95,7 +95,7 @@ echo ===================================================================
 echo   Python is too old
 echo ===================================================================
 echo.
-for /f "delims=" %%V in ('%PY% -c "import sys;print(sys.version.split()[0])"') do echo You have Python %%V, but EasyMiniMax needs 3.10 or newer.
+for /f "delims=" %%V in ('%PY% -c "import sys;print(sys.version.split()[0])"') do echo You have Python %%V, but EasyMiniDirector needs 3.10 or newer.
 echo.
 echo Install a newer version from  https://www.python.org/downloads/
 echo and remember to tick "Add python.exe to PATH".

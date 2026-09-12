@@ -25,7 +25,7 @@ def built(monkeypatch, tmp_path):
     (install / "settings.json").write_text("{}", encoding="utf-8")
 
     monkeypatch.setattr(sys, "frozen", True, raising=False)
-    monkeypatch.setattr(sys, "executable", str(install / "EasyMiniMax.exe"))
+    monkeypatch.setattr(sys, "executable", str(install / "EasyMiniDirector.exe"))
     # A one-file build unpacks its read-only contents somewhere else entirely.
     monkeypatch.setattr(sys, "_MEIPASS", str(tmp_path / "unpacked"), raising=False)
     return install
@@ -34,7 +34,7 @@ def built(monkeypatch, tmp_path):
 # -- a built copy ----------------------------------------------------------
 
 def test_our_files_go_one_level_below_the_exe(built):
-    assert paths.data_dir() == built / "EasyMiniMax"
+    assert paths.data_dir() == built / "EasyMiniDirector"
 
 
 def test_our_files_never_go_in_easyais_folder(built):

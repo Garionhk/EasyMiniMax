@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""EasyMiniMax - the program itself.
+"""EasyMiniDirector - the program itself.
 
 Built by "Build EXE.bat". A spec rather than a command line because the unused
 Qt libraries can only be dropped after PyInstaller has finished collecting
@@ -12,10 +12,10 @@ sys.path.insert(0, SPECPATH)
 from app import __version__ as VERSION
 from build_common import EXCLUDES, strip_unused, version_file
 
-APP_NAME = 'EasyMiniMax'
+APP_NAME = 'EasyMiniDirector'
 
 a = Analysis(
-    ['EasyMiniMax.py'],
+    ['EasyMiniDirector.py'],
     pathex=[],
     binaries=[],
     # The layout has to match what app/paths.py resolve_dir() expects: the
@@ -55,7 +55,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['assets/icons/EasyMiniMax.ico'],
+    icon=['assets/icons/EasyMiniDirector.ico'],
     # So Explorer can tell one build from another: Properties -> Details shows
     # the version and when it was built.
     version=version_file(os.path.join(SPECPATH, 'build'), APP_NAME,

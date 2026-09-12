@@ -1,16 +1,16 @@
 @echo off
 REM ===================================================================
-REM  Builds EasyMiniMax.exe and EasyMiniMax Setup.exe into dist\.
+REM  Builds EasyMiniDirector.exe and EasyMiniDirector Setup.exe into dist\.
 REM
 REM  Each is a single self-contained .exe - no Python needed on the
-REM  machine that runs it. Give someone dist\EasyMiniMax Setup.exe and it works.
+REM  machine that runs it. Give someone dist\EasyMiniDirector Setup.exe and it works.
 REM
 REM  Run this whenever the code, the workflows or the translations
 REM  change. It takes a couple of minutes.
 REM ===================================================================
 setlocal EnableExtensions
 cd /d "%~dp0"
-title Building EasyMiniMax
+title Building EasyMiniDirector
 
 REM  "Build EXE.bat nopause" skips the Press-any-key at the end, so this can
 REM  be run from a script without leaving a window waiting for someone.
@@ -25,7 +25,7 @@ if not defined PY goto :no_python
 
 echo.
 echo ===================================================================
-echo   Building EasyMiniMax
+echo   Building EasyMiniDirector
 echo ===================================================================
 echo.
 
@@ -48,18 +48,18 @@ REM  match what the code expects, because app\paths.py resolves it relative
 REM  to the unpacked bundle; what is excluded, and why, is in
 REM  build_common.py.
 REM -------------------------------------------------------------------
-echo [1/2] Building EasyMiniMax.exe ...
-%PY% -m PyInstaller --noconfirm --clean "EasyMiniMax.spec"
+echo [1/2] Building EasyMiniDirector.exe ...
+%PY% -m PyInstaller --noconfirm --clean "EasyMiniDirector.spec"
 if errorlevel 1 goto :build_failed
 
 REM -------------------------------------------------------------------
-REM  The installer second, and not by accident: it carries dist\EasyMiniMax.exe
+REM  The installer second, and not by accident: it carries dist\EasyMiniDirector.exe
 REM  inside itself as a data file, so the program has to exist first. The spec
 REM  refuses to build if it does not.
 REM -------------------------------------------------------------------
 echo.
-echo [2/2] Building EasyMiniMax Setup.exe ...
-%PY% -m PyInstaller --noconfirm --clean "EasyMiniMax Setup.spec"
+echo [2/2] Building EasyMiniDirector Setup.exe ...
+%PY% -m PyInstaller --noconfirm --clean "EasyMiniDirector Setup.spec"
 if errorlevel 1 goto :build_failed
 
 REM --- tidy up --------------------------------------------------------
@@ -86,10 +86,10 @@ echo.
 echo These need nothing installed - not even Python. Copy the whole
 echo dist folder, or just the one .exe you want to share.
 echo.
-echo Give people  EasyMiniMax Setup.exe  - it carries the program inside it.
+echo Give people  EasyMiniDirector Setup.exe  - it carries the program inside it.
 echo.
-echo Note: the installer puts EasyMiniMax.exe into your EasyAI folder,
-echo and keeps its own settings and videos in an EasyMiniMax subfolder.
+echo Note: the installer puts EasyMiniDirector.exe into your EasyAI folder,
+echo and keeps its own settings and videos in an EasyMiniDirector subfolder.
 echo.
 %HOLD%
 exit /b 0
@@ -117,7 +117,7 @@ echo Build failed. The messages above say why.
 echo.
 echo The usual causes:
 echo   - antivirus holding a file open. Try again, or exclude this folder.
-echo   - a previous EasyMiniMax.exe still running. Close it and retry.
+echo   - a previous EasyMiniDirector.exe still running. Close it and retry.
 echo.
 %HOLD%
 exit /b 1

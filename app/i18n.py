@@ -135,7 +135,7 @@ def _preference_file() -> Path:
     """
     base = os.environ.get("APPDATA") or os.environ.get("XDG_CONFIG_HOME") \
         or str(Path.home())
-    return Path(base) / "EasyMiniMax" / "language.json"
+    return Path(base) / "EasyMiniDirector" / "language.json"
 
 
 def remember(code: str) -> None:

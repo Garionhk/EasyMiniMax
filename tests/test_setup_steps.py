@@ -84,10 +84,10 @@ def test_a_real_easyai_folder_is_recognised(easyai):
 def test_our_own_folder_is_not_mistaken_for_easyais(tmp_path):
     """settings.json was tried as a marker first and was worse than useless:
     this program has one too, so the guess proposed our own folder."""
-    ours = tmp_path / "EasyMiniMax"
-    (ours / "EasyMiniMax").mkdir(parents=True)
-    (ours / "EasyMiniMax" / "settings.json").write_text("{}", encoding="utf-8")
-    (ours / "EasyMiniMax.exe").write_bytes(b"MZ")
+    ours = tmp_path / "EasyMiniDirector"
+    (ours / "EasyMiniDirector").mkdir(parents=True)
+    (ours / "EasyMiniDirector" / "settings.json").write_text("{}", encoding="utf-8")
+    (ours / "EasyMiniDirector.exe").write_bytes(b"MZ")
     assert steps.looks_like_easyai(ours) is False
 
 
@@ -142,7 +142,7 @@ def test_our_files_go_in_a_subfolder(easyai, offline):
     steps.Installer(_choices(easyai, install_ollama=False,
                              install_model=False)).run()
 
-    ours = easyai / "EasyMiniMax"
+    ours = easyai / "EasyMiniDirector"
     assert (ours / "settings.json").is_file()
     assert (ours / "workflows" / steps.WORKFLOW).is_file()
     assert (ours / "output").is_dir()
@@ -152,7 +152,7 @@ def test_our_settings_take_easyais_comfyui_location(easyai, offline, tmp_path):
     steps.Installer(_choices(easyai, install_ollama=False,
                              install_model=False)).run()
 
-    written = json.loads((easyai / "EasyMiniMax" / "settings.json")
+    written = json.loads((easyai / "EasyMiniDirector" / "settings.json")
                          .read_text(encoding="utf-8"))
     assert written["comfyui_dir"] == str(tmp_path / "ComfyUI_portable")
     assert written["comfyui_server"] == "127.0.0.1:8188"
@@ -165,7 +165,7 @@ def test_running_it_twice_keeps_what_the_user_changed(easyai, offline):
     steps.Installer(_choices(easyai, install_ollama=False,
                              install_model=False)).run()
 
-    ours = easyai / "EasyMiniMax" / "settings.json"
+    ours = easyai / "EasyMiniDirector" / "settings.json"
     settings = json.loads(ours.read_text(encoding="utf-8"))
     settings["comfyui_dir"] = r"D:\My Own ComfyUI"
     settings["duration_seconds"] = 9.0
@@ -233,7 +233,7 @@ def test_not_enough_room_stops_before_anything_is_written(easyai, monkeypatch):
 
     assert not report.ok
     assert "not enough room" in report.failed[0]
-    assert not (easyai / "EasyMiniMax").exists()
+    assert not (easyai / "EasyMiniDirector").exists()
 
 
 # -- carrying on after a failure ------------------------------------------
@@ -250,7 +250,7 @@ def test_a_failed_add_on_does_not_stop_the_settings_being_written(easyai,
     report = steps.Installer(_choices(easyai, install_model=False)).run()
 
     assert report.failed, "the add-on failure was not reported"
-    assert (easyai / "EasyMiniMax" / "settings.json").is_file()
+    assert (easyai / "EasyMiniDirector" / "settings.json").is_file()
 
 
 def test_an_easyai_that_was_never_set_up_still_installs(tmp_path, offline):
@@ -262,7 +262,7 @@ def test_an_easyai_that_was_never_set_up_still_installs(tmp_path, offline):
     report = steps.Installer(_choices(folder, install_ollama=False,
                                       install_model=False)).run()
 
-    assert (folder / "EasyMiniMax" / "settings.json").is_file()
+    assert (folder / "EasyMiniDirector" / "settings.json").is_file()
     assert "comfyui_dir" in report.skipped
 
 
@@ -280,7 +280,7 @@ def test_the_installer_leaves_a_copy_of_itself(easyai, offline, bundle,
     """So both programs sit together and setup can be run again later."""
     import sys
 
-    fake_setup = tmp_path / "EasyMiniMax Setup.exe"
+    fake_setup = tmp_path / "EasyMiniDirector Setup.exe"
     fake_setup.write_bytes(b"MZ installer")
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     monkeypatch.setattr(sys, "executable", str(fake_setup))

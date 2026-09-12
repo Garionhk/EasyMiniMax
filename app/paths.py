@@ -29,7 +29,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 #: returning the exe's own folder would hand the two programs the same file to
 #: read and write. They would trade window positions, and each would carry the
 #: other's settings around for ever.
-APP_FOLDER = "EasyMiniMax"
+APP_FOLDER = "EasyMiniDirector"
 
 
 def frozen() -> bool:

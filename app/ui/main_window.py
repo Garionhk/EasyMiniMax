@@ -50,7 +50,7 @@ from app.ui.subjects import SubjectPanel
 from app.ui.voice import VoicePanel
 from app.ui.widgets import PreviewPane, ResultGallery, Switch, open_folder
 
-APP_TITLE = "EasyMiniMax"
+APP_TITLE = "EasyMiniDirector"
 
 #: The smallest this window may be made with all three columns showing.
 #:
@@ -1003,7 +1003,7 @@ class MainWindow(QMainWindow):
         chosen, _ = QFileDialog.getOpenFileName(
             self, t("Load settings from a video"),
             str(self.cfg.output_dir()),
-            t("EasyMiniMax settings (*.json)"))
+            t("EasyMiniDirector settings (*.json)"))
         if not chosen:
             return
         self.apply_recipe(recipe.load(chosen))

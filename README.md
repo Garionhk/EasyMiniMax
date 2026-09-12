@@ -1,4 +1,4 @@
-# EasyMiniMax
+# EasyMiniDirector
 
 A plain front end for the **MiniMax H3 Director** workflow in ComfyUI, built on
 the same foundations as EasyAI.
@@ -23,7 +23,7 @@ fast.
 
 ## Installing it
 
-Run **EasyMiniMax Setup.exe**, point it at your EasyAI folder, and press
+Run **EasyMiniDirector Setup.exe**, point it at your EasyAI folder, and press
 Install. It needs no Python, no administrator, and no `git`.
 
 It puts both programs together and keeps their files apart:
@@ -31,9 +31,9 @@ It puts both programs together and keeps their files apart:
 ```
 <your EasyAI folder>  EasyAI.exe                     already yours
   settings.json                  EasyAI's - read once, never written
-  EasyMiniMax.exe                ← installed
-  EasyMiniMax Setup.exe          ← installed, so you can run it again later
-  EasyMiniMax\                   ← everything of ours
+  EasyMiniDirector.exe                ← installed
+  EasyMiniDirector Setup.exe          ← installed, so you can run it again later
+  EasyMiniDirector\                   ← everything of ours
     settings.json
     workflows    output```
 
@@ -55,12 +55,12 @@ video side works perfectly without them, and the ✨ buttons simply stay hidden.
 
 **Where ComfyUI is** comes from EasyAI's settings.json, read once so you are not
 asked a question you have already answered. After that our own settings win: point
-EasyMiniMax at a different ComfyUI and it stays there, whatever EasyAI later says.
+EasyMiniDirector at a different ComfyUI and it stays there, whatever EasyAI later says.
 EasyAI's file is never written to.
 
 ### Running it from source
 
-Double-click **EasyMiniMax.bat** (or **EasyMiniMaxSetup.bat**). The first run
+Double-click **EasyMiniDirector.bat** (or **EasyMiniDirectorSetup.bat**). The first run
 installs the Python libraries it needs. Requirements: Python 3.10+ and a working
 ComfyUI (0.32 or newer).
 
@@ -70,7 +70,7 @@ ComfyUI (0.32 or newer).
 "Build EXE.bat"
 ```
 
-Builds `dist\EasyMiniMax.exe` and then `dist\EasyMiniMax Setup.exe`, in that
+Builds `dist\EasyMiniDirector.exe` and then `dist\EasyMiniDirector Setup.exe`, in that
 order — the installer carries the program inside itself, so the program has to
 exist first. The spec refuses to build if it does not.
 

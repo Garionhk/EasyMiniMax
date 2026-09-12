@@ -401,10 +401,10 @@ def app_icon():
     from PySide6.QtGui import QIcon
 
     icon = QIcon()
-    ico = ICON_DIR / "EasyMiniMax.ico"
+    ico = ICON_DIR / "EasyMiniDirector.ico"
     if ico.is_file():
         icon.addFile(str(ico))
-    for png in sorted(ICON_DIR.glob("EasyMiniMax-*.png")):
+    for png in sorted(ICON_DIR.glob("EasyMiniDirector-*.png")):
         icon.addFile(str(png))
     return icon
 

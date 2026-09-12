@@ -35,7 +35,7 @@ LASTFRAME = "MiniMaxH3SaveLastFrameCS"
 
 #: The id given to the last-frame saver when it is spliced in. Not a number, so
 #: it can never collide with an id ComfyUI assigned on export.
-LASTFRAME_ID = "easyminimax_lastframe"
+LASTFRAME_ID = "easyminidirector_lastframe"
 
 #: Every class_type the bundled graph needs, mapped to whether the run can go
 #: ahead without it. The Director and the samplers are the workflow; Spectrum
@@ -197,7 +197,7 @@ def apply(graph: dict, storyboard: timeline.Storyboard, profile: Profile, *,
           uploaded_voice: str = "",
           seed: int | None = None,
           attention_options: list[str] | None = None,
-          filename_prefix: str = "video/EasyMiniMax",
+          filename_prefix: str = "video/EasyMiniDirector",
           save_last_frame: bool = False,
           ) -> tuple[dict, Report]:
     """Return a patched deep copy of the graph plus a report of what changed.
@@ -300,7 +300,7 @@ def _add_last_frame_saver(graph: dict, roles: Roles, report: Report) -> None:
         "inputs": {
             "images": [roles.decode_video, 0],
             "save": True,
-            "filename_prefix": "EasyMiniMax/lastframe",
+            "filename_prefix": "EasyMiniDirector/lastframe",
         },
         "class_type": LASTFRAME,
         "_meta": {"title": "Save Last Frame"},

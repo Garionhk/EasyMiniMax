@@ -1,4 +1,4 @@
-"""EasyMiniMax - a plain front end for the MiniMax H3 Director workflow.
+"""EasyMiniDirector - a plain front end for the MiniMax H3 Director workflow.
 
 Launched with pythonw, so there is no console to print a traceback into. Any
 failure before the window exists has to reach the user as a message box, or the
@@ -32,11 +32,11 @@ def _report(problem: str) -> None:
     try:
         from PySide6.QtWidgets import QApplication, QMessageBox
         app = QApplication.instance() or QApplication(sys.argv)
-        QMessageBox.critical(None, "EasyMiniMax", problem)
+        QMessageBox.critical(None, "EasyMiniDirector", problem)
     except Exception:
         try:
             import ctypes
-            ctypes.windll.user32.MessageBoxW(0, problem, "EasyMiniMax", 0x10)
+            ctypes.windll.user32.MessageBoxW(0, problem, "EasyMiniDirector", 0x10)
         except Exception:
             print(problem)
 
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception:
-        _report("EasyMiniMax could not start:\n\n" + traceback.format_exc())
+        _report("EasyMiniDirector could not start:\n\n" + traceback.format_exc())
         sys.exit(1)

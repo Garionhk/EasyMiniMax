@@ -16,7 +16,7 @@ from app import __version__                       # noqa: E402
 from build_common import newest_source_time       # noqa: E402
 
 PROJECT = Path(__file__).resolve().parent.parent
-EXES = ("EasyMiniMax.exe", "EasyMiniMax Setup.exe")
+EXES = ("EasyMiniDirector.exe", "EasyMiniDirector Setup.exe")
 
 
 def main() -> int:
@@ -42,8 +42,8 @@ def main() -> int:
     # The installer carries the program inside it, so it can never be smaller.
     # This is here because dropping the wrong TOC entry once produced a healthy
     # looking installer with no program in it, and nothing else noticed.
-    app = PROJECT / "dist" / "EasyMiniMax.exe"
-    setup = PROJECT / "dist" / "EasyMiniMax Setup.exe"
+    app = PROJECT / "dist" / "EasyMiniDirector.exe"
+    setup = PROJECT / "dist" / "EasyMiniDirector Setup.exe"
     if app.is_file() and setup.is_file():
         if setup.stat().st_size <= app.stat().st_size:
             print()

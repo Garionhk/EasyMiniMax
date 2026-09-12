@@ -1,6 +1,6 @@
 """What the three builds leave out, and why.
 
-Read by EasyMiniMax.spec and EasyMiniMax Setup.spec, so the answer lives in one
+Read by EasyMiniDirector.spec and EasyMiniDirector Setup.spec, so the answer lives in one
 place rather than drifting between the two. Copied from EasyAI, whose builds
 have the same problem and the same shared Python underneath them.
 
@@ -181,8 +181,8 @@ def drop_from_binaries(binaries, names):
 #: dist/ and build/ are outputs, __pycache__ is derived, and the .venv is not
 #: ours - including any of them would make every build look stale.
 _SOURCE_DIRS = ("app", "setup", "workflows", "assets")
-_SOURCE_FILES = ("EasyMiniMax.py", "EasyMiniMaxSetup.py", "build_common.py",
-                 "EasyMiniMax.spec", "EasyMiniMax Setup.spec")
+_SOURCE_FILES = ("EasyMiniDirector.py", "EasyMiniDirectorSetup.py", "build_common.py",
+                 "EasyMiniDirector.spec", "EasyMiniDirector Setup.spec")
 
 
 def newest_source_time(project_dir):

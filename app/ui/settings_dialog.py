@@ -103,14 +103,14 @@ class SettingsDialog(QDialog):
         form.addRow(t("Address"), self.server_edit)
 
         self.auto_launch = QCheckBox(
-            t("Start ComfyUI automatically when EasyMiniMax opens"))
+            t("Start ComfyUI automatically when EasyMiniDirector opens"))
         self.auto_launch.setChecked(bool(self.cfg.get("auto_launch")))
         form.addRow("", self.auto_launch)
 
-        self.stop_on_exit = QCheckBox(t("Close ComfyUI when EasyMiniMax closes"))
+        self.stop_on_exit = QCheckBox(t("Close ComfyUI when EasyMiniDirector closes"))
         self.stop_on_exit.setToolTip(t(
             "Leaving it running keeps hold of the graphics card.\n\n"
-            "Only ever closes a ComfyUI that EasyMiniMax started. One you opened "
+            "Only ever closes a ComfyUI that EasyMiniDirector started. One you opened "
             "yourself is left alone."))
         self.stop_on_exit.setChecked(bool(self.cfg.get("stop_engine_on_exit")))
         form.addRow("", self.stop_on_exit)

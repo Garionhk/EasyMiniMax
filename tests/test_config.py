@@ -40,7 +40,7 @@ def _point_at_the_fixture(monkeypatch, easyai):
 # -- first run -------------------------------------------------------------
 
 def test_first_run_borrows_the_comfyui_location(tmp_path):
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     assert cfg.get("comfyui_dir") == r"C:\EasyAI-ComfyUI"
     assert cfg.get("comfyui_launcher") == "run_nvidia_gpu.bat"
     assert cfg.get("comfyui_server") == "127.0.0.1:8188"
@@ -48,14 +48,14 @@ def test_first_run_borrows_the_comfyui_location(tmp_path):
 
 def test_only_the_engine_keys_are_borrowed(tmp_path):
     """EasyAI's window position and aspect ratio are none of our business."""
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     assert cfg.get("window_geometry") == ""
     assert "default_ratio" not in cfg.data
 
 
 def test_easyais_file_is_never_written_to(tmp_path, easyai):
     before = easyai.read_bytes()
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     cfg.set("comfyui_dir", r"D:\Somewhere\Else")
     cfg.save()
     assert easyai.read_bytes() == before
@@ -69,7 +69,7 @@ def test_our_own_settings_beat_easyais(tmp_path):
     Point this program at a different ComfyUI, and it keeps that choice - even
     though EasyAI's file still says something else.
     """
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
 
     first = Config(ours)
     assert first.get("comfyui_dir") == r"C:\EasyAI-ComfyUI"     # borrowed
@@ -81,7 +81,7 @@ def test_our_own_settings_beat_easyais(tmp_path):
 
 
 def test_easyai_moving_afterwards_does_not_drag_us_along(tmp_path, easyai):
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     Config(ours).save()                       # we now have a file of our own
 
     easyai.write_text(json.dumps({"comfyui_dir": r"E:\EasyAI Moved"}),
@@ -91,7 +91,7 @@ def test_easyai_moving_afterwards_does_not_drag_us_along(tmp_path, easyai):
 
 
 def test_the_borrow_happens_once_not_on_every_load(tmp_path, easyai):
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     Config(ours).save()
     easyai.unlink()                           # EasyAI uninstalled underneath us
     assert Config(ours).get("comfyui_dir") == r"C:\EasyAI-ComfyUI"
@@ -101,13 +101,13 @@ def test_the_borrow_happens_once_not_on_every_load(tmp_path, easyai):
 
 def test_no_easyai_settings_leaves_the_defaults(tmp_path, easyai):
     easyai.unlink()
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     assert cfg.get("comfyui_dir") == app.config.DEFAULTS["comfyui_dir"]
 
 
 def test_a_corrupt_easyai_file_is_survived(tmp_path, easyai):
     easyai.write_text("{ not json", encoding="utf-8")
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     assert cfg.get("comfyui_dir") == app.config.DEFAULTS["comfyui_dir"]
 
 
@@ -127,7 +127,7 @@ def test_blank_values_in_easyais_file_are_ignored(tmp_path, easyai):
 # -- saving ----------------------------------------------------------------
 
 def test_saving_creates_our_folder(tmp_path):
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     assert not ours.parent.exists()
     Config(ours).save()
     assert ours.is_file()
@@ -135,7 +135,7 @@ def test_saving_creates_our_folder(tmp_path):
 
 def test_an_unknown_key_on_disk_is_kept(tmp_path):
     """A file written by a newer version must not lose its settings here."""
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     ours.parent.mkdir(parents=True)
     ours.write_text(json.dumps({"something_new": 42}), encoding="utf-8")
 
@@ -160,7 +160,7 @@ def test_a_settings_file_with_a_byte_order_mark_still_loads(tmp_path):
     that failure falls back to the defaults, every setting in the file
     disappears without a word.
     """
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     _with_bom(ours, {"comfyui_dir": r"D:\Hand Edited",
                      "duration_seconds": 9.0})
 
@@ -172,13 +172,13 @@ def test_a_settings_file_with_a_byte_order_mark_still_loads(tmp_path):
 def test_easyais_settings_with_a_byte_order_mark_still_lend_us_comfyui(tmp_path,
                                                                        easyai):
     _with_bom(easyai, {"comfyui_dir": r"E:\EasyAI ComfyUI"})
-    cfg = Config(tmp_path / "EasyMiniMax" / "settings.json")
+    cfg = Config(tmp_path / "EasyMiniDirector" / "settings.json")
     assert cfg.get("comfyui_dir") == r"E:\EasyAI ComfyUI"
 
 
 def test_a_hand_edited_file_survives_a_save(tmp_path):
     """Loading, then saving, must not quietly drop what was in it."""
-    ours = tmp_path / "EasyMiniMax" / "settings.json"
+    ours = tmp_path / "EasyMiniDirector" / "settings.json"
     _with_bom(ours, {"comfyui_dir": r"D:\Hand Edited", "notes_to_self": "keep"})
 
     cfg = Config(ours)

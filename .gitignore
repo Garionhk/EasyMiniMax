@@ -6,7 +6,7 @@
 #     PyInstaller usually generates them; ours are hand-written, name what goes
 #     into each build and what is left out, and "Build EXE.bat" will not run
 #     without them. They are listed as kept at the bottom of this file.
-#   * EasyMiniMax.zip is ~150 MB. GitHub refuses any file over 100 MB, so
+#   * EasyMiniDirector.zip is ~150 MB. GitHub refuses any file over 100 MB, so
 #     leaving it out is what lets a push succeed at all.
 
 # --- Python ---------------------------------------------------------------
@@ -26,7 +26,7 @@ dist/
 
 # A stray copy of a build - the two exes end up in this subfolder rather than
 # dist/ when the installer is run from inside the source tree during testing.
-/EasyMiniMax/
+/EasyMiniDirector/
 
 # --- Releases ---------------------------------------------------------------
 # Packaged and zipped for handing to someone; regenerated for every version.
@@ -40,8 +40,8 @@ dist/
 settings.json
 settings.json.tmp
 
-# Everything EasyMiniMax makes: videos, the settings JSON saved beside each
-# one, and the last-frame stills. Large, personal, and none of it is source.
+# Everything EasyMiniDirector makes: videos, the settings JSON saved beside
+# each one, and the last-frame stills. Large, personal, and none of it is source.
 output/
 
 # --- Downloads and staging ---------------------------------------------------
@@ -75,8 +75,8 @@ secrets.json
 # --- Kept on purpose ------------------------------------------------------------
 # Listed explicitly so a later edit, or a generic template pasted over this
 # file, cannot quietly drop them.
-!EasyMiniMax.spec
-!EasyMiniMax Setup.spec
+!EasyMiniDirector.spec
+!EasyMiniDirector Setup.spec
 !build_common.py
 !workflows/**/*.json
 !lang/*.json

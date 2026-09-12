@@ -30,7 +30,7 @@ for _stream in (sys.stdout, sys.stderr):
 from app.i18n import LANGUAGES, LANG_DIR  # noqa: E402
 
 #: Where translatable text lives. Tools and tests are deliberately excluded.
-SOURCES = ["EasyMiniMax.py", "EasyMiniMaxSetup.py", "app", "setup"]
+SOURCES = ["EasyMiniDirector.py", "EasyMiniDirectorSetup.py", "app", "setup"]
 
 
 def strings_in(path: Path) -> list[str]:
